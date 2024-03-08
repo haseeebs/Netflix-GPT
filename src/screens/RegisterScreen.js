@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { validEmail, validPassword, validUsername } from '../utils/formValidation';
 
 const RegisterScreen = () => {
+
+    const username = useRef(null);
+    const email = useRef(null);
+    const password = useRef(null);
+
+    const [usernameError, setUsernameError] = useState(null);
+    const [emailError, setEmailError] = useState(null);
+    const [passwordError, setPasswordError] = useState(null);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const isUsernameValid = validUsername(username.current.value);
+        const isEmailValid = validEmail(email.current.value);
+        const isPasswordValid = validPassword(password.current.value);
+
+        console.log(username, email, password);
+        console.log(isUsernameValid, isEmailValid, isPasswordValid);
+        setUsernameError(isUsernameValid);
+        setEmailError(isEmailValid);
+        setPasswordError(isPasswordValid);
+        console.log(usernameError, emailError, passwordError);
+    }
+
     return (
         <div className=''>
 
@@ -17,10 +42,16 @@ const RegisterScreen = () => {
             <div className="h-3/4 w-full sm:w-[21.5rem] p-10 bg-black bg-opacity-75 text-white absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <h1 className='font-medium text-2xl'>Sign up</h1>
 
-                <form action="" className='h-3/4 flex flex-col justify-between mt-5 text-sm'>
-                    <input type="text" placeholder='Enter username' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
-                    <input type="text" placeholder='Enter email' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
-                    <input type="password" placeholder='Enter password' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
+                <form onSubmit={handleSubmit} className='h-3/4 flex flex-col justify-between mt-5 text-sm'>
+                    <input ref={username} type="text" placeholder='Enter username' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
+                    {usernameError && <p className='text-red-600 text-xs'>{usernameError}</p>}
+
+                    <input ref={email} type="text" placeholder='Enter email' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
+                    {emailError && <p className='text-red-600 text-xs'>{emailError}</p>}
+
+                    <input ref={password} type="password" placeholder='Enter password' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
+                    {passwordError && <p className='text-red-600 text-xs'>{passwordError}</p>}
+
                     <button className='bg-red-600 w-full p-2.5 rounded-[4px]'>Sign up</button>
                 </form>
 

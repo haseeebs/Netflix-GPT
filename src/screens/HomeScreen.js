@@ -14,18 +14,18 @@ const HomeScreen = () => {
         />
       </div>
 
-      <div className="h-1/2 w-[37%] text-center text-white absolute z-10 top-[70%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <h1 className='font-extrabold text-5xl'>Unlimited movies, TV shows and more</h1>
+      <div className="flex flex-col h-full w-full text-center text-white absolute z-10">
+        <h1 className='w-2/3 sm:w-1/2 mx-auto mt-40 sm:mt-52  font-extrabold text-3xl sm:text-5xl'>Unlimited movies, TV shows and more</h1>
 
-        <div className="text-sm mt-2 leading-[3rem]">
+        <div className="w-3/4 m-auto text-sm leading-[3rem] ">
           <p className='font-bold'>Starts at ₹149. Cancel anytime.</p>
           <p>Ready to watch? Enter your email to create or restart your membership.</p>
           
           <div className="text-white mt-5">
-          <Link to={'/register'}>
-            <button className='font-medium text-xl bg-red-600 px-5 py-2 rounded-md'>{'Get Started >'}</button>
-          </Link>
-        </div>
+            <Link to={'/register'}>
+              <button className='font-medium text-xl bg-red-600 px-5 py-2 rounded-md'>{'Get Started >'}</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
