@@ -19,12 +19,10 @@ const RegisterScreen = () => {
         const isEmailValid = validEmail(email.current.value);
         const isPasswordValid = validPassword(password.current.value);
 
-        console.log(username, email, password);
-        console.log(isUsernameValid, isEmailValid, isPasswordValid);
         setUsernameError(isUsernameValid);
         setEmailError(isEmailValid);
         setPasswordError(isPasswordValid);
-        console.log(usernameError, emailError, passwordError);
+        
     }
 
     return (
