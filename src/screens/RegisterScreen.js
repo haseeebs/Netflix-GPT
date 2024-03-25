@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { validEmail, validPassword, validUsername } from '../utils/formValidation';
+import { auth } from '../utils/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const RegisterScreen = () => {
 
@@ -14,15 +17,29 @@ const RegisterScreen = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        
         const isUsernameValid = validUsername(username.current.value);
         const isEmailValid = validEmail(email.current.value);
         const isPasswordValid = validPassword(password.current.value);
-
+        
         setUsernameError(isUsernameValid);
         setEmailError(isEmailValid);
         setPasswordError(isPasswordValid);
-        
+
+        if (!isUsernameValid && !isEmailValid && !isPasswordValid) {
+            handleSignUp();
+        }
+    }
+
+    const handleSignUp = () => {
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((user) => {
+                console.log(user);
+                toast.info(user);
+            })
+            .catch((error) => {
+                toast.error(`${error.code} ${error.message}`);
+            })
     }
 
     return (
@@ -50,7 +67,7 @@ const RegisterScreen = () => {
                     <input ref={password} type="password" placeholder='Enter password' className='w-full p-2.5 rounded-[4px] bg-[#333] outline-none' />
                     {passwordError && <p className='text-red-600 text-xs'>{passwordError}</p>}
 
-                    <button className='bg-red-600 w-full p-2.5 rounded-[4px]'>Sign up</button>
+                    <button type='submit' className='bg-red-600 w-full p-2.5 rounded-[4px]'>Sign up</button>
                 </form>
 
                 <div className="flex gap-1 text-xs mt-5">

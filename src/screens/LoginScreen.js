@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { validEmail, validPassword } from '../utils/formValidation';
+import { auth } from '../utils/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const LoginScreen = () => {
 
@@ -15,9 +18,25 @@ const LoginScreen = () => {
 
     const emailValidationResult = validEmail(email.current.value);
     const passwordValidationResult = validPassword(password.current.value);
-    
+
     setEmailError(emailValidationResult);
     setPasswordError(passwordValidationResult);
+
+    if (!emailValidationResult && !passwordValidationResult) {
+      handleLogin();
+    }
+  }
+
+  const handleLogin = () => {
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        toast.error(`${error.code} ${error.message}`)
+      });
   }
 
   return (
