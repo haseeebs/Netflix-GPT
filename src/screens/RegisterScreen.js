@@ -2,10 +2,14 @@ import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { validEmail, validPassword, validUsername } from '../utils/formValidation';
 import { auth } from '../utils/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../slices/userSlice';
 
 const RegisterScreen = () => {
+
+    const dispatch = useDispatch();
 
     const username = useRef(null);
     const email = useRef(null);
@@ -17,11 +21,11 @@ const RegisterScreen = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+
         const isUsernameValid = validUsername(username.current.value);
         const isEmailValid = validEmail(email.current.value);
         const isPasswordValid = validPassword(password.current.value);
-        
+
         setUsernameError(isUsernameValid);
         setEmailError(isEmailValid);
         setPasswordError(isPasswordValid);
@@ -33,10 +37,16 @@ const RegisterScreen = () => {
 
     const handleSignUp = () => {
         createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-            .then((user) => {
-                console.log(user);
-                toast.info(user);
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                updateProfile(user, {
+                    displayName: username.current.value
+                }).then(() => {
+                    const { uid, email, displayName } = auth.currentUser;
+                    dispatch(addUser({ uid, email, displayName }));
+                })
             })
+
             .catch((error) => {
                 toast.error(`${error.code} ${error.message}`);
             })

@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const LoginScreen = () => {
-
+  
   const email = useRef(null);
   const password = useRef(null);
 
@@ -29,11 +29,7 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        // ...
-      })
+    signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .catch((error) => {
         toast.error(`${error.code} ${error.message}`)
       });

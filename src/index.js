@@ -7,6 +7,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import store from './store';
+import { Provider } from 'react-redux';
+import BrowseScreen from './screens/BrowseScreen';
 
 const appRouter = createBrowserRouter([
   {
@@ -25,6 +28,10 @@ const appRouter = createBrowserRouter([
         path: '/register',
         element: <RegisterScreen />
       },
+      {
+        path: '/browse',
+        element: <BrowseScreen />
+      },
     ]
   }
 ])
@@ -32,7 +39,9 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={appRouter} />
+    <Provider store={store}>
+      <RouterProvider router={appRouter} />
+    </Provider>
   </React.StrictMode>
 );
 
