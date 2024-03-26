@@ -1,11 +1,16 @@
+// Library imports
 import { Outlet, useNavigate } from "react-router-dom";
-import Header from "./components/Header";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./utils/firebase";
 import { useDispatch } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+// Absolute imports
+import { auth } from "./utils/firebase";
+
+// Relative imports
+import Header from "./components/Header";
 import { addUser, removeUser } from "./slices/userSlice";
 
 function App() {
@@ -26,6 +31,7 @@ function App() {
         navigate('/');
       }
     });
+
   }, [])
 
   return (

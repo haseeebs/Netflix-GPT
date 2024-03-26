@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import store from './store';
 import { Provider } from 'react-redux';
 import BrowseScreen from './screens/BrowseScreen';
+import PrivateRoute from './components/PrivateRoute';
 
 const appRouter = createBrowserRouter([
   {
@@ -17,21 +18,27 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/',
-        element: <HomeScreen />
-      },
-      {
-        path: '/login',
-        element: <LoginScreen />
-      },
-      {
-        path: '/register',
-        element: <RegisterScreen />
+        path: '',
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: '/',
+            element: <HomeScreen />
+          },
+          {
+            path: '/login',
+            element: <LoginScreen />
+          },
+          {
+            path: '/register',
+            element: <RegisterScreen />
+          },
+        ]
       },
       {
         path: '/browse',
         element: <BrowseScreen />
-      },
+      }
     ]
   }
 ])
