@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { auth } from '../utils/firebase';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { LOGO } from '../utils/constants';
 
 const Header = () => {
   const userDetails = useSelector(store => store.user);
@@ -21,7 +22,7 @@ const Header = () => {
       <div className="w-40">
         <Link to={'/'}>
         <img
-          src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+          src={LOGO}
           alt="logo"
           className='w-full object-cover'
         />

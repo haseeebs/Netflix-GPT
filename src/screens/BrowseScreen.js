@@ -1,6 +1,10 @@
-import React from 'react'
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies"
+
 
 const BrowseScreen = () => {
+
+  useNowPlayingMovies()
+
   return (
     <div>BrowseScreen</div>
   )

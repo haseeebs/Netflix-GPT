@@ -19,7 +19,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
 
@@ -32,6 +32,7 @@ function App() {
       }
     });
 
+    return () => unsubscribe();
   }, [])
 
   return (
