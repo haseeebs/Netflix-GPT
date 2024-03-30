@@ -21,17 +21,17 @@ const Header = () => {
     <div className='absolute z-20 w-full flex justify-between items-center px-[8%]'>
       <div className="w-40">
         <Link to={'/'}>
-        <img
-          src={LOGO}
-          alt="logo"
-          className='w-full object-cover'
-        />
+          <img
+            src={LOGO}
+            alt="logo"
+            className='w-full object-cover'
+          />
         </Link>
       </div>
 
       {userDetails ? (
-        <div>
-        <span className='mr-3 bg-red-600 px-3 py-1 text-xs text-white rounded-sm'>{userDetails.displayName}</span>
+        <div className='flex'>
+          <span className='mr-3 bg-red-600 px-3 py-1 text-xs text-white rounded-sm'>{userDetails.displayName}</span>
           <button onClick={handleSignOut} className="bg-red-600 px-3 py-1 text-xs text-white rounded-sm">
             Sign out
           </button>
