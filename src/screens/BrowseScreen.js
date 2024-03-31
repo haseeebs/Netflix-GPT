@@ -6,6 +6,7 @@ import BottomContainer from "../components/BottomContainer"
 import usePopularMovies from "../hooks/usePopularMovies"
 import useTopRatedMovies from "../hooks/useTopRatedMovies"
 import useUpcomingMovies from "../hooks/useUpcomingMovies"
+import GptSuggetionScreen from "./GptSuggetionScreen"
 
 const BrowseScreen = () => {
 
@@ -16,6 +17,7 @@ const BrowseScreen = () => {
   useUpcomingMovies();
 
   const movieDetails = useSelector(store => store.movies?.nowPlayingMovies);
+  const isGptButtonClicked = useSelector(store => store.gpt?.showGptSuggestionComponent);
 
   if (!movieDetails) return <div>Loading...</div>;
 
@@ -23,8 +25,14 @@ const BrowseScreen = () => {
 
   return (
     <div className="">
-      <MainContainer original_title={original_title} overview={overview} />
-      <BottomContainer />
+      {isGptButtonClicked ? (
+        <GptSuggetionScreen />
+      ) : (
+        <>
+          <MainContainer original_title={original_title} overview={overview} />
+          <BottomContainer />
+        </>
+      )}
     </div>
   )
 }

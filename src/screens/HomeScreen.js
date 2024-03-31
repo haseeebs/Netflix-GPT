@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { BACKGROUND_IMAGE_URL } from '../utils/constants'
 
 const HomeScreen = () => {
   return (
@@ -8,7 +9,7 @@ const HomeScreen = () => {
         <div className='absolute z-10 h-full w-full bg-gradient-to-b from-black opacity-80'></div>
         <div className='absolute z-10 h-full w-full bg-gradient-to-t from-black'></div>
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/93da5c27-be66-427c-8b72-5cb39d275279/94eb5ad7-10d8-4cca-bf45-ac52e0a052c0/IN-en-20240226-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
+          src={BACKGROUND_IMAGE_URL}
           alt="backgroundImage"
           className='h-screen w-screen object-cover'
         />
