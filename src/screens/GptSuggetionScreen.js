@@ -6,7 +6,7 @@ import { BACKGROUND_IMAGE_URL } from '../utils/constants'
 const GptSuggetionScreen = () => {
   return (
     <div>
-      <img src={BACKGROUND_IMAGE_URL} alt="backgroundImage" className='absolute -z-10' />
+      <img src={BACKGROUND_IMAGE_URL} alt="backgroundImage" className='fixed -z-10' />
       <GptSearchBar />
       <GptMovieSuggestions />
     </div>

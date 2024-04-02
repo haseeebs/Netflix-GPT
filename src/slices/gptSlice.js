@@ -10,9 +10,12 @@ const gptSlice = createSlice({
     reducers: {
         toggleState: (state, action) => {
             state.showGptSuggestionComponent = !state.showGptSuggestionComponent
+        },
+        setSearchedMovies: (state, action) => {
+            state.searchedMovies = action.payload;
         }
     }
 });
 
-export const { toggleState } = gptSlice.actions;
+export const { toggleState, setSearchedMovies } = gptSlice.actions;
 export default gptSlice.reducer;

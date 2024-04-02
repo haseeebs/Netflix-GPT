@@ -1,14 +1,14 @@
 export const LANGUAGES = {
     en: {
         search: 'search',
-        placeholder: 'Which movie you wanna watch today!',
+        placeholder: 'Which type of movie are you in the mood for?',
     },
     hi: {
         search: 'खोज',
-        placeholder: 'आज आप कौन सी फिल्म देखना चाहते हैं!',
+        placeholder: 'आप किस प्रकार की फिल्म देखने के मूड में हैं?',
     },
     fr: {
         search: 'recherche',
-        placeholder: "Quel film tu veux regarder aujourd'hui !",
+        placeholder: "Quel type de film as-tu envie de regarder aujourd'hui ?",
     }
-}
+};
