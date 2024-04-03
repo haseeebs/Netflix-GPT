@@ -23,6 +23,7 @@ const GptSearchBar = () => {
         try {
             if(searchMovieText.current.value === ''){
                 dispatch(setSearchedMovies({}));
+                return
             }
             const searchQuery = `Act as a movie recommended system and suggest some movies for the query "${searchMovieText.current.value}". only give me names of 5 movies, comma seperated like the example results given ahead. Example Results: Mughal-E-Azam, Hera pheri, Munna bhai MBBS, Gol maal, Dhamaal`
             toast.success(`Searching for: ${searchMovieText.current.value}`)

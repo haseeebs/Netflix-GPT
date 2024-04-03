@@ -8,7 +8,9 @@ const GptMovieSuggestions = () => {
 
   return (
     <div>
-      {searchedMovies && <MoviesContainer title={'Searched Movies'} movieDetails={searchedMovies} />}
+      {searchedMovies ? (<MoviesContainer title={'Searched Movies'} movieDetails={searchedMovies} />) : (
+        <div className='font-bold text-white text-center text-xl bg-red-500 p-10 mt-10'>Search for a movie...</div>
+      )}
     </div>
   )
 }
